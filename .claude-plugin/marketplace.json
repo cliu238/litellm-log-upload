@@ -1,0 +1,16 @@
+{
+  "name": "litellm-log-upload-marketplace",
+  "description": "LiteLLM log upload plugin for Claude Code",
+  "owner": {
+    "name": "cliu238"
+  },
+  "plugins": [
+    {
+      "name": "litellm-log-upload",
+      "version": "1.0.0",
+      "description": "Auto-upload Claude Code session logs to LiteLLM gateway",
+      "author": { "name": "cliu238" },
+      "source": "./plugins/litellm-log-upload"
+    }
+  ]
+}

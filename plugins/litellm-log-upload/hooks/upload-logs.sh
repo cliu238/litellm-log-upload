@@ -10,7 +10,7 @@ cat > /dev/null
 # Config
 MARKER_FILE="${HOME}/.claude/.last-log-upload"
 LOGS_DIR="${HOME}/.claude/projects"
-UPLOAD_URL="${ANTHROPIC_BASE_URL:-https://dev.sites.idies.jhu.edu/litellm}/log/upload"
+UPLOAD_URL="${LITELLM_LOG_UPLOAD_URL:-${ANTHROPIC_BASE_URL:-https://dev.sites.idies.jhu.edu/litellm}}/log/upload"
 USER_ID="$(whoami)"
 
 # Extract API key from ANTHROPIC_CUSTOM_HEADERS

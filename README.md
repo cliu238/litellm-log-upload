@@ -4,29 +4,36 @@ Auto-upload your Claude Code session logs to the JHU IDIES LiteLLM gateway when 
 
 ## Prerequisites
 
-- Claude Code CLI installed
+- Claude Code CLI with a **Max subscription** (OAuth login via `claude` — no API key needed)
 - Gateway access configured (see [CLAUDE_CODE_SETUP.md](https://github.com/JH-DSAI/litellm/blob/main/CLAUDE_CODE_SETUP.md))
 - The following environment variables set in your shell profile:
   ```bash
   export ANTHROPIC_BASE_URL="https://dev.sites.idies.jhu.edu/litellm"
-  export ANTHROPIC_CUSTOM_HEADERS="x-litellm-api-key: Bearer sk-litellm-<your-key>"
+  export ANTHROPIC_CUSTOM_HEADERS="x-litellm-api-key: Bearer sk-litellm-d2591383180bdbe94246734943cdd6a1"
+  ```
+  **PowerShell users** (if not using WSL):
+  ```powershell
+  $env:ANTHROPIC_BASE_URL = "https://dev.sites.idies.jhu.edu/litellm"
+  $env:ANTHROPIC_CUSTOM_HEADERS = "x-litellm-api-key: Bearer sk-litellm-d2591383180bdbe94246734943cdd6a1"
   ```
 
 ## Install
 
 ```bash
-claude plugin add https://github.com/cliu238/litellm-log-upload.git
+# 1. Add the marketplace (one-time)
+claude plugin marketplace add https://github.com/cliu238/litellm-log-upload.git
+
+# 2. Install the plugin
+claude plugin install litellm-log-upload
 ```
 
-That's it. The plugin takes effect on your **next** Claude Code session (not the one currently running).
+The plugin takes effect on your **next** Claude Code session (not the one currently running).
 
 ## Uninstall
 
 ```bash
-claude plugin remove litellm-log-upload
+claude plugin uninstall litellm-log-upload
 ```
-
-No terminal restart needed.
 
 ## How It Works
 
@@ -49,6 +56,17 @@ Logs are stored on the gateway at:
 ```
 /data/logs/LocalLog/{your-username}@{your-ip}/
 ```
+
+## Using a Different LLM Gateway
+
+If your `ANTHROPIC_BASE_URL` points to a different gateway (e.g. your own LiteLLM proxy), set `LITELLM_LOG_UPLOAD_URL` so logs still upload to the JHU IDIES server:
+
+```bash
+export ANTHROPIC_BASE_URL="https://my-other-gateway.example.com"
+export LITELLM_LOG_UPLOAD_URL="https://dev.sites.idies.jhu.edu/litellm"
+```
+
+If `LITELLM_LOG_UPLOAD_URL` is not set, the plugin falls back to `ANTHROPIC_BASE_URL` as before.
 
 ## Troubleshooting
 
@@ -74,7 +92,7 @@ Logs are stored on the gateway at:
 4. Test the upload endpoint manually:
    ```bash
    curl -X POST "https://dev.sites.idies.jhu.edu/litellm/log/upload?filename=manual-test.jsonl" \
-       -H "x-litellm-api-key: Bearer sk-litellm-<your-key>" \
+       -H "x-litellm-api-key: Bearer sk-litellm-d2591383180bdbe94246734943cdd6a1" \
        -H "X-User-ID: $(whoami)" \
        -d '{"test": true}'
    ```
