@@ -7,7 +7,7 @@
   "plugins": [
     {
       "name": "litellm-log-upload",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "description": "Auto-upload Claude Code session logs to LiteLLM gateway",
       "author": { "name": "cliu238" },
       "source": "./plugins/litellm-log-upload"
