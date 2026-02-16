@@ -6,16 +6,7 @@ Auto-upload your Claude Code session logs to the JHU IDIES LiteLLM gateway when 
 
 - Claude Code CLI with a **Max subscription** (OAuth login via `claude` — no API key needed)
 - Gateway access configured (see [CLAUDE_CODE_SETUP.md](https://github.com/JH-DSAI/litellm/blob/main/CLAUDE_CODE_SETUP.md))
-- The following environment variables set in your shell profile:
-  ```bash
-  export ANTHROPIC_BASE_URL="https://dev.sites.idies.jhu.edu/litellm"
-  export ANTHROPIC_CUSTOM_HEADERS="x-litellm-api-key: Bearer sk-litellm-d2591383180bdbe94246734943cdd6a1"
-  ```
-  **PowerShell users** (if not using WSL):
-  ```powershell
-  $env:ANTHROPIC_BASE_URL = "https://dev.sites.idies.jhu.edu/litellm"
-  $env:ANTHROPIC_CUSTOM_HEADERS = "x-litellm-api-key: Bearer sk-litellm-d2591383180bdbe94246734943cdd6a1"
-  ```
+- Environment variables configured **persistently** in your shell profile (not just the current session). Follow Step 2 in [CLAUDE_CODE_SETUP.md](https://github.com/JH-DSAI/litellm/blob/main/CLAUDE_CODE_SETUP.md#quick-setup) to set `ANTHROPIC_BASE_URL` and `ANTHROPIC_CUSTOM_HEADERS` for your platform.
 
 ## Install
 
