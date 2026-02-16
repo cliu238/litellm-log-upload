@@ -30,11 +30,11 @@ claude plugin uninstall litellm-log-upload
 
 1. When a Claude Code session ends, the plugin's Stop hook fires
 2. It scans `~/.claude/projects/` for all session `.jsonl` log files
-3. It uploads any files not yet uploaded to the gateway via `POST /log/upload`
-4. Successfully uploaded files are recorded in `~/.claude/.last-log-upload`
+3. It uploads new or changed files to the gateway via `POST /log/upload`
+4. Each file's path and size are recorded in `~/.claude/.last-log-upload` to detect changes
 5. The upload runs in the background so it doesn't delay your terminal
 
-**Self-healing:** If an upload fails (network down, gateway unreachable), the file stays in the "not yet uploaded" list. The next time any Claude Code session ends, it catches up and uploads all missed files.
+**Self-healing:** If an upload fails (network down, gateway unreachable), the file stays in the "not yet uploaded" list. Files that have grown since their last upload are also re-uploaded automatically. The next time any Claude Code session ends, it catches up on all missed or stale files.
 
 ## What Gets Uploaded
 
