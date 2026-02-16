@@ -35,7 +35,7 @@ fi
         file_size=$(stat -f%z "$logfile" 2>/dev/null || stat -c%s "$logfile" 2>/dev/null || echo 0)
 
         # Skip if already uploaded at same size (path<TAB>size format)
-        prev_size=$(grep -F "$logfile" "$MARKER_FILE" 2>/dev/null | tail -1 | cut -f2)
+        prev_size=$(grep -F "$logfile" "$MARKER_FILE" 2>/dev/null | tail -1 | cut -f2 || true)
         if [ "$prev_size" = "$file_size" ]; then
             continue
         fi
