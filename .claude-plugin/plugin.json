@@ -1,0 +1,6 @@
+{
+  "name": "litellm-log-upload",
+  "version": "1.0.0",
+  "description": "Auto-upload Claude Code session logs to LiteLLM gateway",
+  "author": { "name": "cliu238" }
+}

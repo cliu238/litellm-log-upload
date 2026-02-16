@@ -1,0 +1,16 @@
+{
+  "description": "Upload session logs on Stop",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/upload-logs.sh",
+            "timeout": 30
+          }
+        ]
+      }
+    ]
+  }
+}
